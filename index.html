@@ -1,35 +1,81 @@
-<html lang="en">
-<head>
-    <title>Card Flip Project</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="wrapper">
-        <div class="card"> 
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartão de Visita: God Delivery</title>
 
-            <div class="front-page">
-                <div class="card-info">
-                    <h2 class="card-title">God Delivery</h2>
-                    <p class="card-subtitle">Peça já a sua primeira entrega</p>
-                    <h3 class="ent">Entregas a partir de R$ 8,00</h3>
-                    <h4 class="ent1">1) Deliveries</h4>
-                    <h4 class="ent1">2) Entregas Rapidas</h4>
-                    <h4 class="ent1">3) Coletas</h4>
-                </div> 
-            </div>
-            
-            <div class="back-page">
-                <div class="card-content">
-                    <h3>God Delivery</h3>
-                    <img class="logo" src="Logo-God-Dd.jpg">
-                    <p class="card-description"> </p>
-                    <p class="card-description"> </p>
-                    <a href="https://wa.me/message/73ACF4MW5HENP1"><button class="card-button">Whatssap</button></a>
-                </div>
-            </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="headline">Cartao de Visita Digital</div>
+
+      <div class="wrapper">
+        <div class="card" role="button" aria-label="Virar cartao" aria-pressed="false" tabindex="0">
+          <div class="front-page">
+            <span class="shine"></span>
+            <span class="floating-shape"></span>
+            <div class="card-info">
+              <h2 class="card-title">God Delivery</h2>
+              <p class="card-subtitle">Peca ja a sua primeira entrega</p>
+              <p class="chip">Entregas a partir de R$ 8,00</p>
+              <p class="ent">Sua encomenda chega mais rapido</p>
+              <p class="ent1">1) Deliveries</p>
+              <p class="ent1">2) Entregas Rapidas</p>
+              <p class="ent1">3) Coletas</p>
+            </div>
+          </div>
+
+          <div class="back-page">
+            <div class="card-content">
+              <h3>God Delivery</h3>
+              <img class="logo" src="Logo-God-Dd.jpg" alt="Logo God Delivery" />
+              <p class="card-description">
+                Atendimento rapido, coleta no local e entrega segura em toda a
+                cidade.
+              </p>
+              <p class="card-description">
+                Clique no botao e fale direto no WhatsApp.
+              </p>
+              <a href="https://wa.me/message/73ACF4MW5HENP1">
+                <button class="card-button">WhatsApp</button>
+              </a>
+            </div>
+          </div>
         </div>
-    </div>
-</body>
-</html>
+      </div>
+    </main>
+    <script>
+      const card = document.querySelector(".card");
 
+      if (card) {
+        const toggleFlip = () => {
+          const isFlipped = card.classList.toggle("is-flipped");
+          card.setAttribute("aria-pressed", isFlipped ? "true" : "false");
+        };
+
+        card.addEventListener("click", (event) => {
+          if (event.target.closest("a, button")) {
+            return;
+          }
+          toggleFlip();
+        });
+
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleFlip();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

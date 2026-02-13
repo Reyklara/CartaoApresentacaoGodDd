@@ -1,113 +1,310 @@
-*{
-    padding: 0;
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-body{
-    font-family: "roboto";
-    background-color: #a5b1c2;
-    margin:30px 80px;
-    height: 100vh;
-}
-.wrapper{
-    perspective: 3000px;
-}
-.card{
-    width: 360px;
-    height: 530px;
-    transform-style: preserve-3d;
-    transition: transform .8s ease-in-out;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
-    -5px -5px 10px rgba(0, 0, 0, 0.05);
-    border-radius: 15px;
-}
-.card:hover{
-    transform: rotateY(180deg);
-}
-.front-page,
-.back-page{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 15px;
-}
-.front-page{
-    background-image: url(motoboyGodDd.png);
-    background-size: cover;
-}   
 
-.card-info{
-    
-    bottom: 50px;
-    left: 45px;
-    color: #fff;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+:root {
+  color-scheme: light;
+  --bg-1: #fff2d9;
+  --bg-2: #f4b39f;
+  --ink-1: #101014;
+  --ink-2: #3a3a4a;
+  --accent-1: #ff6a3d;
+  --accent-2: #0e9aa7;
+  --accent-3: #f9c74f;
+  --card-shadow: 0 25px 60px rgba(12, 10, 24, 0.25);
+  --card-radius: 22px;
+}
+
+body {
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  background: radial-gradient(circle at top, #fff7e8 0%, var(--bg-1) 35%, var(--bg-2) 100%);
+  color: var(--ink-1);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 28px);
+}
+
+main {
+  width: min(92vw, 380px);
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  margin-inline: auto;
+}
+
+.headline {
+  font-family: "Bebas Neue", "Impact", sans-serif;
+  letter-spacing: 1.5px;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-top: 4px;
+}
+
+.wrapper {
+  perspective: 2600px;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  max-height: 68svh;
+  transform-style: preserve-3d;
+  transition: transform 0.9s ease;
+  cursor: pointer;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.front-page,
+.back-page {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.front-page {
+  background: linear-gradient(145deg, rgba(12, 12, 24, 0.12), rgba(12, 12, 24, 0.35)),
+    url(entregador.png) 15% / cover no-repeat;
+  display: grid;
+  align-content: end;
+}
+
+.front-page::after {
+  content: "Clique para virar";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  background: rgba(16, 16, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  animation: badge-pulse 2.2s ease-in-out infinite;
+}
+
+.card-info {
+  padding: clamp(16px, 3.5vw, 24px);
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.card-title {
+  font-family: "Bebas Neue", "Impact", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  letter-spacing: 2px;
+}
+
+.card-subtitle {
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  font-weight: 600;
+  color: var(--accent-3);
+  margin-top: 6px;
+}
+
+.ent {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: #ffe4c4;
+  margin-top: 18px;
+}
+
+.ent1 {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  color: #b8f2ff;
+  margin-top: 4px;
+}
+
+.chip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.85rem;
+  margin-top: 12px;
+}
+
+.back-page {
+  background: linear-gradient(160deg, #0e9aa7, #0f4c75 55%, #1b1b3a 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transform: rotateY(180deg);
+}
+
+.card-content {
+  text-align: center;
+  padding: clamp(20px, 4vw, 32px);
+  max-width: 320px;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.card-content h3 {
+  font-family: "Bebas Neue", "Impact", sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  letter-spacing: 2px;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #dfe7f2;
+  line-height: 1.6;
+}
+
+.card-button {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #ff6a3d, #f9c74f, #0e9aa7, #ff6a3d);
+  background-size: 220% 220%;
+  color: #1a1a1a;
+  padding: 12px 28px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow:
+    0 0 0 rgba(255, 106, 61, 0.0),
+    0 12px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: gradient-shift 3.5s ease infinite, glow-pulse 2.8s ease-in-out infinite;
+}
+
+.card-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 26px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.floating-shape {
+  position: absolute;
+  inset: auto 10% 8% auto;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.45), transparent 70%);
+  opacity: 0.7;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.12) 40%, transparent 70%);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes badge-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(255, 106, 61, 0.0),
+      0 12px 20px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(255, 106, 61, 0.55),
+      0 16px 26px rgba(0, 0, 0, 0.25);
+  }
+}
+
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+
+  .headline {
     text-align: center;
-}
-.card-title{
-    font-size: 40px;
-    font-weight: bold;
-}
-.card-subtitle{
-    font-size: 20px;
-    font-weight: bolder;
-    color: blue;
-}
-.back-page{
-    background-color: chocolate;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotateY(180deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-.card-content{
-    text-align: center;
-    padding: 20px;
-    max-width: 300px;
-}
-.card-content h3{
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-.card-description{
-    font-size: 1rem;
-    color: #ccc;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-.card-button{
-    background-color: #0fbcf9;
-    color: #fff;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.card-button:hover{
-    background-color: transparent;
-    color: aqua;
-    border: 1px solid #0fbcf9;
-}
-.ent{
-    font-size: 25px;
-    color: brown;
-    margin-top: 30%;
-}
-.ent1{
-    font-size: 20px;
-    color: lightseagreen;
-   
-}
-.logo{
-    width: 100px;
-    min-height: 100px;
-    border: 2px solid white;
-    border-radius: 10px;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+
+  .wrapper {
+    width: 100%;
+  }
+
+  .front-page::after {
+    content: 'Toque para virar';
+  }
+
+  .card {
+    aspect-ratio: 2 / 3.2;
+    max-height: 62svh;
+    cursor: auto;
+  }
+
+  .card-info {
+    padding: 14px;
+  }
+
+  .chip {
+    font-size: 0.78rem;
+  }
+
+  .ent {
+    margin-top: 12px;
+  }
 }
